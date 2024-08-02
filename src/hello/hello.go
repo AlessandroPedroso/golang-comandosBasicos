@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -11,9 +12,17 @@ func main() {
 	exibeMenu()
 	comando := leComando()
 
+	// nome, idade := devolveNomeEIdade()
+	// fmt.Println(nome, idade)
+
+	// retornar a variavel que você aquiser
+	// _, idade := devolveNomeEIdade()
+	// fmt.Println(idade)
+
 	switch comando {
 	case 1:
-		fmt.Println("Monitorando")
+
+		iniciarMonitoramento()
 
 	case 2:
 		fmt.Println("Exibindo logs")
@@ -27,6 +36,14 @@ func main() {
 		os.Exit(-1)
 	}
 
+}
+
+// exemplo de retorno com duas funções
+func devolveNomeEIdade() (string, int) {
+	nome := "Douglas"
+	idade := 29
+
+	return nome, idade
 }
 
 func exibeIntroducao() {
@@ -51,6 +68,14 @@ func leComando() int {
 	fmt.Println("O comando escolhido foi", comandoLido)
 
 	return comandoLido
+}
+
+func iniciarMonitoramento() {
+	fmt.Println("Monitorando")
+	site := "https://www.alura.com.br"
+	resp, _ := http.Get(site)
+	fmt.Println(resp)
+
 }
 
 // var nome string = "Alessandro"
